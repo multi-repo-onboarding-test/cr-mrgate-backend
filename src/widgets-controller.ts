@@ -1,5 +1,7 @@
-// Widgets API controller.
+// Widgets API controller (v1).
 export class WidgetsController {
+	constructor(private readonly repo: WidgetRepository) {}
+
 	// GET /widgets - list all widgets (v1)
 	listWidgets(): Widget[] {
 		return this.repo.findAll()
@@ -9,8 +11,6 @@ export class WidgetsController {
 	getWidget(id: string): Widget | undefined {
 		return this.repo.findById(id)
 	}
-
-	constructor(private readonly repo: WidgetRepository) {}
 }
 
 export interface Widget {
@@ -21,16 +21,4 @@ export interface Widget {
 export interface WidgetRepository {
 	findAll(): Widget[]
 	findById(id: string): Widget | undefined
-}
-
-// --- v2 additions ---
-export interface WidgetsV2Controller {
-	// GET /widgets/v2/all - returns every widget with v2 envelope metadata.
-	listAllV2(): WidgetV2Envelope
-}
-
-export interface WidgetV2Envelope {
-	readonly version: 2
-	readonly items: readonly Widget[]
-	readonly total: number
 }
