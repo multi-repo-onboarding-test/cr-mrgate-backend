@@ -1,0 +1,42 @@
+{
+  "reviews": {
+    "auto_review": {
+      "enabled": true
+    },
+    "pre_merge_checks": {
+      "docstrings": {
+        "mode": "off"
+      },
+      "title": {
+        "mode": "off"
+      },
+      "description": {
+        "mode": "off"
+      },
+      "issue_assessment": {
+        "mode": "off"
+      },
+      "custom_checks": [
+        {
+          "name": "Linked fixture evidence",
+          "mode": "warning",
+          "instructions": "Inspect the linked companion repository at the PR-selected ref. Report its fixture contract identifier, actual commit and assertion file. PASS only when the file contains an assertion for rejectNegativeQuantity; FAIL if inspection confirms it absent; INCONCLUSIVE if the checkout cannot be inspected."
+        },
+        {
+          "name": "Primary fixture control",
+          "mode": "warning",
+          "instructions": "Inspect src/rev733_quantity.ts in this primary repository. PASS if normalizeQuantity returns Math.max(0, quantity), otherwise FAIL. Cite the file."
+        }
+      ]
+    }
+  },
+  "knowledge_base": {
+    "automatic_linking_mode": "disabled",
+    "linked_repositories": [
+      {
+        "repository": "multi-repo-onboarding-test/cr-mrgate-frontend",
+        "instructions": "Quantity validation assertions are in spec/rev733_quantity_spec.ts."
+      }
+    ]
+  }
+}
