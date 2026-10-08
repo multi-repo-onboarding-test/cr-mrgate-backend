@@ -10,6 +10,10 @@ export class WidgetsController {
 		return this.repo.findById(id)
 	}
 
+	listWidgetNames(): string[] {
+		return this.repo.findAll().map(widget => widget.name)
+	}
+
 	constructor(private readonly repo: WidgetRepository) {}
 }
 
