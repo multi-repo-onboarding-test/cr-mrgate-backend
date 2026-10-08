@@ -14,6 +14,12 @@ export class WidgetsController {
 		return this.repo.findAll().map(({ name }) => name)
 	}
 
+	listWidgetNamesStartingWith(prefix: string): string[] {
+		return this.repo.findAll()
+			.filter(widget => widget.name.startsWith(prefix))
+			.map(widget => widget.name)
+	}
+
 	constructor(private readonly repo: WidgetRepository) {}
 }
 
